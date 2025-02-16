@@ -3,18 +3,20 @@ import Footer from "@/app/components/footer"
 import Breadcrumb from "@/app/components/breadcrumb"
 import { properties } from "@/app/data/properties"
 import Image from "next/image"
+
 import { Bed, Bath, Square, MapPin, Phone, Mail } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { ScheduleViewingModal } from "@/app/components/properties/schedule-viewing-modal"
 import { RequestInfoModal } from "@/app/components/properties/request-info-modal"
 
-interface PropertyPageProps {
+interface PageProps {
   params: {
-    id: string
-  }
+    id: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default function PropertyPage({ params }: PropertyPageProps) {
+export default function PropertyPage({ params, searchParams }: PageProps) {
   const property = properties.find(p => p.id === parseInt(params.id))
 
   if (!property) {
