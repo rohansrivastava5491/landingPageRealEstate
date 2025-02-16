@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Typewriter from "typewriter-effect"
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 const Hero = () => {
   return (
@@ -29,7 +30,9 @@ const Hero = () => {
               your dream home simple, efficient, and enjoyable.
             </p>
             <div className="flex gap-4">
-              <Button size="lg">Browse Properties</Button>
+            <Button size="lg" asChild>
+  <Link href="/properties">Browse Properties</Link>
+</Button>
               <Button size="lg" variant="outline">
                 Learn More
               </Button>

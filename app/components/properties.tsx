@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
-
+import Link from "next/link"
 const properties = [
   {
     id: 1,
@@ -138,7 +138,9 @@ const Properties = () => {
           viewport={{ once: true }}
           className="text-center mt-8"
         >
-          <Button size="lg">View All Properties</Button>
+          <Button size="lg" asChild>
+  <Link href="/properties">View All Properties</Link>
+</Button>
         </motion.div>
       </div>
     </section>
