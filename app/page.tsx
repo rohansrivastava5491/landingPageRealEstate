@@ -8,6 +8,7 @@ import FAQs from './components/faqs'
 import Stats from './components/stats'
 import Newsletter from './components/newsletter'
 import Footer from './components/footer'
+import ScrollToTop from './components/scroll-to-top'
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <FAQs />
       <Newsletter />
       <Footer />
+      <ScrollToTop />
     </main>
   )
 }

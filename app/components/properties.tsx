@@ -1,7 +1,10 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { motion } from "framer-motion"
 
 const properties = [
   {
@@ -76,47 +79,67 @@ const Properties = () => {
   return (
     <section className="py-12" id="properties">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
           <h2 className="text-3xl font-bold mb-4">Featured Properties</h2>
           <p className="text-gray-600">Explore our handpicked properties</p>
-        </div>
+        </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {properties.map((property) => (
-            <Card key={property.id} className="overflow-hidden">
-              <CardHeader className="p-0">
-                <div className="relative h-[240px]">
-                  <Image
-                    src={property.image}
-                    alt={property.title}
-                    fill
-                    className="object-cover"
-                  />
-                  <Badge className="absolute top-4 left-4">{property.type}</Badge>
-                </div>
-              </CardHeader>
-              <CardContent className="p-4">
-                <h3 className="text-xl font-semibold mb-2">{property.title}</h3>
-                <p className="text-gray-600 mb-2">{property.location}</p>
-                <div className="flex justify-between text-sm text-gray-500">
-                  <span>{property.beds} beds</span>
-                  <span>{property.baths} baths</span>
-                  <span>{property.sqft} sqft</span>
-                </div>
-              </CardContent>
-              <CardFooter className="p-4 border-t">
-                <div className="flex justify-between items-center w-full">
-                  <span className="text-xl font-bold text-primary">
-                    {property.price}
-                  </span>
-                  <Button variant="outline">View Details</Button>
-                </div>
-              </CardFooter>
-            </Card>
+          {properties.map((property, index) => (
+            <motion.div
+              key={property.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <Card className="overflow-hidden">
+                <CardHeader className="p-0">
+                  <div className="relative h-[240px]">
+                    <Image
+                      src={property.image}
+                      alt={property.title}
+                      fill
+                      className="object-cover"
+                    />
+                    <Badge className="absolute top-4 left-4">{property.type}</Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-4">
+                  <h3 className="text-xl font-semibold mb-2">{property.title}</h3>
+                  <p className="text-gray-600 mb-2">{property.location}</p>
+                  <div className="flex justify-between text-sm text-gray-500">
+                    <span>{property.beds} beds</span>
+                    <span>{property.baths} baths</span>
+                    <span>{property.sqft} sqft</span>
+                  </div>
+                </CardContent>
+                <CardFooter className="p-4 border-t">
+                  <div className="flex justify-between items-center w-full">
+                    <span className="text-xl font-bold text-primary">
+                      {property.price}
+                    </span>
+                    <Button variant="outline">View Details</Button>
+                  </div>
+                </CardFooter>
+              </Card>
+            </motion.div>
           ))}
         </div>
-        <div className="text-center mt-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mt-8"
+        >
           <Button size="lg">View All Properties</Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
