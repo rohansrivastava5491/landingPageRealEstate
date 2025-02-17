@@ -1,21 +1,27 @@
+import { Metadata } from "next"
 import Navbar from "@/app/components/navbar"
 import Footer from "@/app/components/footer"
 import Breadcrumb from "@/app/components/breadcrumb"
 import { properties } from "@/app/data/properties"
 import Image from "next/image"
+import { Button } from "@/components/ui/button"
 import { Bed, Bath, Square, MapPin, Phone, Mail } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { ScheduleViewingModal } from "@/app/components/properties/schedule-viewing-modal"
 import { RequestInfoModal } from "@/app/components/properties/request-info-modal"
 
-type Props = {
-  params: {
-    id: string;
-  };
+interface PageProps {
+  params: Promise<{ id: string }>;
 }
 
-export default function PropertyPage({ params }: Props) {
-  const property = properties.find(p => p.id === parseInt(params.id))
+export const metadata: Metadata = {
+  title: 'Property Details',
+  description: 'View detailed information about this property',
+}
+
+export default async function PropertyPage({ params }: PageProps) {
+  const { id } = await params
+  const property = properties.find(p => p.id === parseInt(id))
 
   if (!property) {
     return <div>Property not found</div>
