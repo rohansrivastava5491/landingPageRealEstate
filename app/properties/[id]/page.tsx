@@ -3,22 +3,19 @@ import Footer from "@/app/components/footer"
 import Breadcrumb from "@/app/components/breadcrumb"
 import { properties } from "@/app/data/properties"
 import Image from "next/image"
-
 import { Bed, Bath, Square, MapPin, Phone, Mail } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { ScheduleViewingModal } from "@/app/components/properties/schedule-viewing-modal"
 import { RequestInfoModal } from "@/app/components/properties/request-info-modal"
 
-interface PageProps {
+type Props = {
   params: {
     id: string;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default async function PropertyPage({ params, searchParams }: PageProps) {
-  const id = await params.id
-  const property = properties.find(p => p.id === parseInt(id))
+export default function PropertyPage({ params }: Props) {
+  const property = properties.find(p => p.id === parseInt(params.id))
 
   if (!property) {
     return <div>Property not found</div>
@@ -27,16 +24,18 @@ export default async function PropertyPage({ params, searchParams }: PageProps) 
   return (
     <div className="min-h-screen">
       <Navbar showNavItems={false} />
-      {/* Header section */}
+      {/* Fixed header section */}
       <div className="fixed top-0 left-0 right-0 bg-white z-20">
         <div className="h-16" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Breadcrumb 
-            items={[
-              { label: "Properties", href: "/properties" },
-              { label: property.title }
-            ]} 
-          />
+          <div className="space-y-2">
+            <Breadcrumb 
+              items={[
+                { label: "Properties", href: "/properties" },
+                { label: property.title }
+              ]} 
+            />
+          </div>
         </div>
       </div>
 
