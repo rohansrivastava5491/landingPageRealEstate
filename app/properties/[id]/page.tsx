@@ -16,8 +16,9 @@ interface PageProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default function PropertyPage({ params, searchParams }: PageProps) {
-  const property = properties.find(p => p.id === parseInt(params.id))
+export default async function PropertyPage({ params, searchParams }: PageProps) {
+  const id = await params.id
+  const property = properties.find(p => p.id === parseInt(id))
 
   if (!property) {
     return <div>Property not found</div>
